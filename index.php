@@ -1,6 +1,7 @@
 <?php
     require_once 'config.php';
     require_once LIMONADE_PATH .'limonade.php';
+    require_once 'lib/db.php';
 
     /**
      *
@@ -13,11 +14,19 @@
         if( option('env') > ENV_PRODUCTION )
         {
             // some development settings ...
+            $dsn = 'sqlite:db/dev.db';
         }
         else
         {
             // some production settings ...
+            $dsn = 'sqlite:db/prod.db';
         }
+
+        $db = new PDO($dsn);
+        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+        
+        option('dsn', $dsn);
+        option('db_conn', $db);
     }
 
     /**
@@ -30,9 +39,20 @@
 
     dispatch('/', 'welcome');
         function welcome()
-        {
+        {            
             return html( 'Welcome!' );
         }
+
+    dispatch( '/list', 'listTweets' );
+        function listTweets()
+        {
+            $tweets = find_raw_tweets();
+            if( is_array( $tweets) && sizeof( $tweets ) )
+            {
+                die( json_encode( $tweets ) );
+            }
+        }
+
 
     /**
      *
@@ -60,10 +80,10 @@
 
             });
 
-            function printSuccess(data, textStatus){
-                //Handle data as a JSON object
-//                alert( data );
-            }
+//            function printSuccess(data, textStatus){
+//                //Handle data as a JSON object
+////                alert( data );
+//            }
         </script>
     </head>
     <body>

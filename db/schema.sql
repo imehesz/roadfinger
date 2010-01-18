@@ -1,0 +1,1 @@
+CREATE TABLE tweets (city varchar(100), created NUMERIC, id INTEGER PRIMARY KEY, location varchar(240), profile_image varchar(240), raw_date varchar(50), raw_tweet TEXT, state varchar(25), user varchar(100));
