@@ -8,9 +8,15 @@
  *
  * @return <type> 
  */
-function find_tweets()
+function find_tweets( $limit = NULL )
 {
-    return find_objects_by_sql("SELECT * FROM `tweets`");
+    if( $limit  )
+    {
+        return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `tweets` ORDER BY `created` DESC LIMIT " . $limit);
+    }
+
+    return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `tweets` ORDER BY `created` DESC");
+
 }
 
 /**

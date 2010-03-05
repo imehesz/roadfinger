@@ -40,7 +40,7 @@
     dispatch('/', 'welcome');
         function welcome()
         {
-            $tweets = find_raw_tweets();
+            $tweets = find_tweets( 15 );
 
             if( is_array( $tweets ) && sizeof($tweets) )
             {
