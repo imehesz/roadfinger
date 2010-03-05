@@ -1,0 +1,73 @@
+/* 
+    Document   : style
+    Created on : Mar 4, 2010, 8:31:09 PM
+    Author     : imehesz
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+html{
+    font-family: Tahoma, Helvetica, sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+
+.wrapper
+{
+    width:960px;
+    margin:0 auto;
+}
+
+.menu{
+    background: url('/images/bg-top.png') no-repeat;
+    padding:20px 100px 0px 100px;
+}
+
+.wrapper-inside{
+    
+}
+
+.menu-item{
+    float:left;
+    margin-right: 65px;
+    margin-left: 10px;
+}
+
+.content{
+    background: url('/images/bg-bg.png') repeat-y;
+    overflow: hidden;
+}
+
+.content-left{
+    width:180px;
+    margin-left:110px;
+    float:left;
+    margin-bottom: -2000px; padding-bottom: 2000px;
+}
+
+.content-right{
+    float:left;
+    width:550px;
+    margin-bottom: -2000px; padding-bottom: 2000px;
+}
+
+div.content-left img
+{
+    vertical-align: bottom;
+}
+
+.tweet{
+    float:left;
+    padding:3px;
+    margin:5px;
+    font-size:12px;
+}
