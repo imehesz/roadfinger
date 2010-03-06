@@ -71,3 +71,61 @@ div.content-left img
     margin:5px;
     font-size:12px;
 }
+
+.footer{
+    text-align:center;
+    font-size:10px;
+    color:#999;
+}
+
+.footer a
+{
+    text-decoration: none;
+    color:#999;
+}
+
+.box
+{
+    float:left;
+    padding: 5px;
+    font-size:14px;
+    text-align:center;
+    margin:15px;
+}
+
+.box a
+{
+    font-weight: bolder;
+    text-decoration: underscore;
+    color: #000;
+}
+
+.yellow
+{
+    margin-top:30px;
+    width: 150px;
+    background-color: yellow;
+}
+
+.aqua
+{
+    width: 200px;
+    background-color:aqua;
+}
+
+.lime
+{
+    background-color:lime;
+    width: 250px;
+}
+
+.fuchsia
+{
+    background-color:fuchsia;
+    width: 250px;
+}
+
+.mini-info
+{
+    font-size:11px;
+}
