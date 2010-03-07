@@ -24,9 +24,9 @@
         }
 
         $db = new PDO(
-            'mysql:host=localhost;dbname=misc',
-            'root',
-            'w1e2b3',
+            'mysql:host=localhost;dbname=dbname',
+            'user',
+            'password',
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
         );
 
@@ -169,7 +169,10 @@ HTML
                             <br /><br /><br /><br /><br />
                         </p>
                         <img alt="this is just a tank" title="this is just a tank" src="images/tank.png" style="vertical-align:bottom;" />
-                    </div>
+                        <p style="margin-top:150px;">
+						<img alt="the finger" title="the finger" src="images/finger.png" style="vertical-align:bottom;" />
+						</p>
+						</div>
                     <div class="content-right"><?php print $content?></div>
                     <div style="clear:both;"></div>
                 </div>
