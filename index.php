@@ -14,7 +14,8 @@
         if( option('env') > ENV_PRODUCTION )
         {
             // some development settings ...
-            $dsn = 'sqlite:db/dev.db';
+            //$dsn = 'sqlite:db/dev.db';
+
         }
         else
         {
@@ -22,7 +23,13 @@
             $dsn = 'sqlite:db/prod.db';
         }
 
-        $db = new PDO($dsn);
+        $db = new PDO(
+            'mysql:host=localhost;dbname=misc',
+            'root',
+            'w1e2b3',
+            array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+        );
+
         $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
         
         option('dsn', $dsn);
@@ -151,8 +158,8 @@ HTML
             <div class="wrapper-inside">
                 <div class="menu">
                     <div class="menu-item"><a href="/"><img src="images/url.png" alt="RoadFinger.mehesz.net" title="RoadFinger.mehesz.net" border="0"/></a></div>
-                    <div class="menu-item"><a href="<?php echo url_for( 'about' );?>" alt="about" title="about"><img src="images/about.png" /></a></div>
-                    <div class="menu-item"><a alt="contact" title="contact" href="javascript:void();" onclick="alert('info [at] mehesz.net');"><img src="images/contact.png" /></a></div>
+                    <div class="menu-item"><a href="<?php echo url_for( 'about' );?>" alt="about" title="about"><img border="0" src="images/about.png" /></a></div>
+                    <div class="menu-item"><a alt="contact" title="contact" href="javascript:void();" onclick="alert('info [at] mehesz.net');"><img border="0" src="images/contact.png" /></a></div>
                     <div class="menu-item"><a href="http://limonade.sofa-design.net/"><img alt="Limonade PHP Framework" title="Limonade PHP Framework" src="images/limonade.png" border="0"/></a></div>
                     <div style="clear:both;"></div>
                 </div>

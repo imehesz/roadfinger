@@ -12,10 +12,10 @@ function find_tweets( $limit = NULL )
 {
     if( $limit  )
     {
-        return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `tweets` ORDER BY `created` DESC LIMIT " . $limit);
+        return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `roadfinger_tweets` ORDER BY `created` DESC LIMIT " . $limit);
     }
 
-    return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `tweets` ORDER BY `created` DESC");
+    return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `roadfinger_tweets` ORDER BY `created` DESC");
 
 }
 
@@ -25,7 +25,7 @@ function find_tweets( $limit = NULL )
  */
 function find_raw_tweets()
 {
-    return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `tweets`");
+    return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `roadfinger_tweets`");
 }
 
 ?>
