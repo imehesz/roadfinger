@@ -11,22 +11,10 @@
         $env = stristr( $_SERVER[ 'HTTP_HOST' ], 'local' ) ? ENV_DEVELOPMENT : ENV_PRODUCTION;
         option('env', $env );
 
-        if( option('env') > ENV_PRODUCTION )
-        {
-            // some development settings ...
-            //$dsn = 'sqlite:db/dev.db';
-
-        }
-        else
-        {
-            // some production settings ...
-            $dsn = 'sqlite:db/prod.db';
-        }
-
         $db = new PDO(
-            'mysql:host=localhost;dbname=dbname',
-            'user',
-            'password',
+            'mysql:host='.DB_HOST.';dbname='.DB_NAME,
+            DB_USER,
+            DB_PASS,
             array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
         );
 
