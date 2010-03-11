@@ -11,6 +11,11 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
+a
+{
+    color: #00f;
+}
+
 root { 
     display: block;
 }
@@ -91,6 +96,7 @@ div.content-left img
     font-size:14px;
     text-align:center;
     margin:15px;
+    overflow: hidden;
 }
 
 .box a

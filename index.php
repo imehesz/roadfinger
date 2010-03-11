@@ -48,7 +48,14 @@
                     $width = rand( 100,400 );
                     $html_tweet = str_ireplace('roadrage','<strong>roadrage</strong>',$tweet -> tweet);
                     $html_tweet = str_ireplace( 'roadfinger','<strong>roadfinger</strong>', $html_tweet );
-                    $output .= "<div class=\"tweet\" style=\"background-color:#{$color};width:{$width}px;\">" . $html_tweet . '</div>';
+                    // TODO - replace ereg_replace with something else
+                    $output .=
+                        "<div class=\"tweet\" style=\"background-color:#{$color};width:{$width}px;\">" .
+                        ereg_replace(
+                            "http://([a-zA-Z0-9./-]+)$",
+                            "<a target='_blank' href=\"\\0\">\\0</a>",
+                            htmlspecialchars_decode($html_tweet)
+                        ). '</div>';
                 }
             }
             return html( $output );
