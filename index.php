@@ -156,6 +156,7 @@ HTML
                     <div class="menu-item"><a href="<?php echo url_for( 'about' );?>" alt="about" title="about"><img border="0" src="images/about.png" /></a></div>
                     <div class="menu-item"><a alt="contact" title="contact" href="javascript:void();" onclick="alert('info [at] mehesz.net');"><img border="0" src="images/contact.png" /></a></div>
                     <div class="menu-item"><a href="http://limonade.sofa-design.net/"><img alt="Limonade PHP Framework" title="Limonade PHP Framework" src="images/limonade.png" border="0"/></a></div>
+                    <div><a href="http://en.wikipedia.org/wiki/Parental_Advisory" target="_blank"><img border="0" src="images/paec75x50.jpg" /></a></div>                    
                     <div style="clear:both;"></div>
                 </div>
                 <div class="content">
