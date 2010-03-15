@@ -66,6 +66,7 @@
         {
             return html(
 <<<HTML
+<p style="margin-top:50px;"></p>
 <div class="yellow box">
     <strong>NO</strong> registration<br />
     <strong>NO</strong> signup<br />
