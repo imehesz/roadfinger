@@ -46,8 +46,8 @@
                     
                     $color = $colors[rand(0,sizeof($colors)-1)];
                     $width = rand( 100,400 );
-                    $html_tweet = str_ireplace('roadrage','<strong>roadrage</strong>',$tweet -> tweet);
-                    $html_tweet = str_ireplace( 'roadfinger','<strong>roadfinger</strong>', $html_tweet );
+                    $html_tweet = str_ireplace('roadrage ','<strong>roadrage</strong>',$tweet -> tweet);
+                    $html_tweet = str_ireplace('roadfinger ','<strong>roadfinger</strong>', $html_tweet );
                     // TODO - replace ereg_replace with something else
                     $output .=
                         "<div class=\"tweet\" style=\"background-color:#{$color};width:{$width}px;\">" .
@@ -155,7 +155,7 @@ HTML
                     <div class="menu-item"><a href="/"><img src="images/url.png" alt="RoadFinger.mehesz.net" title="RoadFinger.mehesz.net" border="0"/></a></div>
                     <div class="menu-item"><a href="<?php echo url_for( 'about' );?>" alt="about" title="about"><img border="0" src="images/about.png" /></a></div>
                     <div class="menu-item"><a alt="contact" title="contact" href="javascript:void();" onclick="alert('info [at] mehesz.net');"><img border="0" src="images/contact.png" /></a></div>
-                    <div class="menu-item"><a href="http://limonade.sofa-design.net/"><img alt="Limonade PHP Framework" title="Limonade PHP Framework" src="images/limonade.png" border="0"/></a></div>
+                    <div class="menu-item"><a href="http://limonade-php.net/"><img alt="Limonade PHP Framework" title="Limonade PHP Framework" src="images/limonade.png" border="0"/></a></div>
                     <div><a href="http://en.wikipedia.org/wiki/Parental_Advisory" target="_blank"><img border="0" src="images/paec75x50.jpg" /></a></div>                    
                     <div style="clear:both;"></div>
                 </div>
