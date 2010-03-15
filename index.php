@@ -46,8 +46,8 @@
                     
                     $color = $colors[rand(0,sizeof($colors)-1)];
                     $width = rand( 100,400 );
-                    $html_tweet = str_ireplace('roadrage ','<strong>roadrage</strong>',$tweet -> tweet);
-                    $html_tweet = str_ireplace('roadfinger ','<strong>roadfinger</strong>', $html_tweet );
+                    $html_tweet = str_ireplace('roadrage ','<strong>roadrage</strong> ',$tweet -> tweet);
+                    $html_tweet = str_ireplace('roadfinger ','<strong>roadfinger</strong> ', $html_tweet );
                     // TODO - replace ereg_replace with something else
                     $output .=
                         "<div class=\"tweet\" style=\"background-color:#{$color};width:{$width}px;\">" .
