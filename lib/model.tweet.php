@@ -28,4 +28,9 @@ function find_raw_tweets()
     return find_objects_by_sql("SELECT `raw_tweet` AS tweet FROM `roadfinger_tweets`");
 }
 
+function get_top5()
+{
+    return find_objects_by_sql( "SELECT user, count( * ) AS cnt FROM `roadfinger_tweets` GROUP BY user ORDER BY cnt DESC LIMIT 5 " );
+}
+
 ?>

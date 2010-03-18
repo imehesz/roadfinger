@@ -135,3 +135,23 @@ div.content-left img
 {
     font-size:11px;
 }
+
+.top5
+{
+    color: #777;
+    margin: 5px 0px 0px 10px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.top5 a
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+.top5 a:hover
+{
+    color: #444;
+    text-decoration: underline;
+}

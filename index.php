@@ -30,6 +30,8 @@
     function before()
     {
         layout('html_my_layout');
+
+        set( 'top5', get_top5() );
     }
 
     dispatch('/', 'welcome');
@@ -129,7 +131,6 @@ HTML
     function html_my_layout($vars){ extract($vars);?>
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
     <html xmlns="http://www.w3.org/1999/xhtml">
-    <html>
     <head>
         <title>roadfinger.mehesz.net</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -162,11 +163,25 @@ HTML
                 </div>
                 <div class="content">
                     <div class="content-left">
-                        <p>
-                            <br /><br /><br /><br /><br />
-                        </p>
+                        <p><br /><br /></p>
+                        
                         <img alt="this is just a tank" title="this is just a tank" src="images/tank.png" style="vertical-align:bottom;" />
-                        <p style="margin-top:150px;">
+
+                        <p style="margin-top:30px;">
+                            <img src="images/top5.png" alt="the TOP5 roadrager" title="the TOP5 roadrager" />
+                            <?php if( is_array( $top5 ) ): ?>
+                                <?php foreach( $top5 as $rager ) : ?>
+                                    <?php
+                                        $whereisat = strpos( $rager -> user , '@' );
+                                        $name = substr( $rager->user, 0, $whereisat );
+                                    ?>
+                                    <div class="top5">
+                                        <a href="http://twitter.com/<?php print $name; ?>" target="_blank"><?php print $name . ' ('. $rager->cnt .')'; ?></a>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </p>
+                        <p style="margin-top:50px;">
 						<img alt="the finger" title="the finger" src="images/finger.png" style="vertical-align:bottom;" />
 						</p>
 						</div>
