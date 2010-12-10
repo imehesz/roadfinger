@@ -19,6 +19,16 @@ function find_tweets( $limit = NULL )
 
 }
 
+function find_geo_tweets( $limit = null )
+{
+    if( $limit )
+    {
+        return find_objects_by_sql("SELECT `raw_tweet`,`location`,`profile_image`,`raw_date`,`raw_tweet`,`user` tweet FROM `roadfinger_tweets` WHERE `location` <> '' ORDER BY `created` DESC LIMIT " . $limit);
+    }
+
+    return find_objects_by_sql("SELECT `raw_tweet`,`location`,`profile_image`,`raw_date`,`raw_tweet`,`user` tweet FROM `roadfinger_tweets` WHERE `location` <> '' ORDER BY `created` DESC" );
+}
+
 /**
  *
  * @return <type>
