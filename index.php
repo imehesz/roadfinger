@@ -63,6 +63,76 @@
             return html( $output );
         }
 
+    dispatch( '/getgeo', 'getgeo' );
+        function getgeo()
+        {
+            $georss = 
+<<<GEORSS
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:google="http://base.google.com/ns/1.0" xml:lang="en-US" xmlns:openSearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns="http://www.w3.org/2005/Atom" xmlns:twitter="http://api.twitter.com/">
+<id>tag:search.twitter.com,2005:search/4sq</id>
+<link type="text/html" rel="alternate" href="http://search.twitter.com/search?q=4sq"/>
+<link type="application/atom+xml" rel="self" href="http://search.twitter.com/search.atom?q=4sq"/>
+<title>4sq - Twitter Search</title>
+<link type="application/opensearchdescription+xml" rel="search" href="http://search.twitter.com/opensearch.xml"/>
+<link type="application/atom+xml" rel="refresh" href="http://search.twitter.com/search.atom?q=4sq&amp;since_id=13342367008432128"/>
+<twitter:warning>since_id removed for pagination.</twitter:warning>
+<updated>2010-12-10T21:20:42Z</updated>
+<openSearch:itemsPerPage>15</openSearch:itemsPerPage>
+<link type="application/atom+xml" rel="next" href="http://search.twitter.com/search.atom?max_id=13342367008432128&amp;page=2&amp;q=4sq"/>
+    <entry>
+    <id>tag:search.twitter.com,2005:13342363451658241</id>
+    <published>2010-12-10T21:20:41Z</published>
+    <link type="text/html" rel="alternate" href="http://twitter.com/xtian_ahumada/statuses/13342363451658241"/>
+    <title>I just ousted @facovi as the mayor of Terminal Tur Bus on @foursquare! http://4sq.com/dcHacC</title>
+    <content type="html">I just ousted &lt;a href=&quot;http://twitter.com/facovi&quot;&gt;@facovi&lt;/a&gt; as the mayor of Terminal Tur Bus on &lt;a href=&quot;http://twitter.com/foursquare&quot;&gt;@foursquare&lt;/a&gt;! &lt;a href=&quot;http://4sq.com/dcHacC&quot;&gt;http://&lt;b&gt;4sq&lt;/b&gt;.com/dcHacC&lt;/a&gt;</content>
+    <updated>2010-12-10T21:20:41Z</updated>
+    <link type="image/png" rel="image" href="http://a1.twimg.com/profile_images/1177075733/Cristian_Ahumada_normal.jpg"/>
+    <twitter:geo>
+    <georss:point>-33.4533 -70.6865</georss:point>
+    </twitter:geo>
+    <twitter:metadata>
+    <twitter:result_type>recent</twitter:result_type>
+    </twitter:metadata>
+    <twitter:source>&lt;a href=&quot;http://foursquare.com&quot; rel=&quot;nofollow&quot;&gt;foursquare&lt;/a&gt;</twitter:source>
+    <twitter:lang>en</twitter:lang>
+    <author>
+    <name>xtian_ahumada (Cristi&#225;n Ahumada)</name>
+    <uri>http://twitter.com/xtian_ahumada</uri>
+    </author>
+    </entry>
+
+    <entry>
+    <id>tag:search.twitter.com,2005:13342357705465857</id>
+    <published>2010-12-10T21:20:40Z</published>
+    <link type="text/html" rel="alternate" href="http://twitter.com/christinelu/statuses/13342357705465857"/>
+    <title>Coco Puffs &amp; Green Tea Puffs ^_^ (@ Liliha Bakery) http://4sq.com/6zizod</title>
+    <content type="html">Coco Puffs &amp;amp; Green Tea Puffs ^_^ (@ Liliha Bakery) &lt;a href=&quot;http://4sq.com/6zizod&quot;&gt;http://&lt;b&gt;4sq&lt;/b&gt;.com/6zizod&lt;/a&gt;</content>
+    <updated>2010-12-10T21:20:40Z</updated>
+    <link type="image/png" rel="image" href="http://a0.twimg.com/profile_images/1171812128/eyelashes2_normal.jpg"/>
+    <twitter:geo>
+    <georss:point>21.3238 -157.8581</georss:point>
+    </twitter:geo>
+    <twitter:metadata>
+    <twitter:result_type>recent</twitter:result_type>
+    </twitter:metadata>
+    <twitter:place>
+    <twitter:id>69dfb07d7bfadad6</twitter:id>
+    <twitter:full_name>Liliha Bakery, Honolulu</twitter:full_name>
+    <twitter:type>poi</twitter:type>
+    </twitter:place>
+    <twitter:source>&lt;a href=&quot;http://foursquare.com&quot; rel=&quot;nofollow&quot;&gt;foursquare&lt;/a&gt;</twitter:source>
+    <twitter:lang>en</twitter:lang>
+    <author>
+    <name>christinelu (Christine Lu)</name>
+    <uri>http://twitter.com/christinelu</uri>
+    </author>
+    </entry>
+</feed>
+GEORSS;
+            die( $georss );
+        }
+
     dispatch( '/about', 'about' );
         function about()
         {
