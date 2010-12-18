@@ -20,7 +20,7 @@
 
         $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
         
-        option('dsn', $dsn);
+        // option('dsn', $dsn);
         option('db_conn', $db);
     }
 
@@ -37,6 +37,7 @@
     dispatch('/', 'welcome');
         function welcome()
         {
+			$output = '';
             $tweets = find_tweets( 15 );
 
             if( is_array( $tweets ) && sizeof($tweets) )
@@ -53,73 +54,104 @@
                     // TODO - replace ereg_replace with something else
                     $output .=
                         "<div class=\"tweet\" style=\"background-color:#{$color};width:{$width}px;\">" .
-                        ereg_replace(
-                            "http://([a-zA-Z0-9./-]+)$",
+                        preg_replace(
+                            "/http:\/\/([a-zA-Z0-9]+)$/",
                             "<a target='_blank' href=\"\\0\">\\0</a>",
                             htmlspecialchars_decode($html_tweet)
                         ). '</div>';
                 }
             }
+
+			$geo_tweets = find_geo_tweets( 10 );
+
+			if( is_array( $geo_tweets ) && sizeof( $geo_tweets ) )
+			{
+				$markers = '';
+
+				// let's put the markers together
+				$cnt = 0;
+				foreach( $geo_tweets as $tweet )
+				{
+					$location_arr = preg_split( '/[,]/', $tweet->location );
+
+					$markers .= "
+						marker_o$cnt		= new Object();
+						marker_o$cnt.lat	= {$location_arr[0]};
+						marker_o$cnt.lon	= {$location_arr[1]};
+						marker_o$cnt.message= '$tweet->raw_tweet';
+						marker_o$cnt.profile= '$tweet->profile_image';
+						markers[$cnt]		= marker_o$cnt;
+					";
+					$cnt++;
+				}
+
+			$output .= 
+<<<ROADRAGEMAP
+			<div style="clear:both;"></div>
+			<h3>roadfinger map</h3>
+			<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAIrAfy9r_PM5B-5VoUtG-mRRCUVFcSe_h36pehuPuUe57FIqXQBStT-nGLrDzK9HgXuT1eT6MKdsZrw"></script>
+			<div id="gmap" style="width:550px;height:400px;">map is loading ...</div>
+			<script type="text/javascript">
+			google.load("maps", "2.x");
+
+			var markers = new Array();
+
+			{$markers}
+
+			/*
+			marker_o0           = new Object;
+			marker_o0.lat       = 42.833261;
+			marker_o0.lon       = -74.058015;
+			marker_o0.message   = 'marker #1';
+			markers[0]          = marker_o0;
+
+			marker_o1           = new Object;
+			marker_o1.lat       = 36.031332;
+			marker_o1.lon       = -95.273437;
+			marker_o1.message   = 'marker #2';
+			markers[1]          = marker_o1;
+			*/
+
+			var active_marker      = 0;
+
+			function initialize() {
+					repeat_popup = window.setInterval( "addPin()", 7000 );
+					addPin();
+			}
+
+			addPin = function( map )
+			{
+					if( active_marker >= markers.length )
+					{
+							active_marker = 0;
+					}
+
+					var map = new google.maps.Map2(document.getElementById('gmap'));
+					// map.addControl(new GSmallMapControl());
+					// map.enableScrollWheelZoom();
+					map.disableDoubleClickZoom();
+					map.setCenter(new google.maps.LatLng( markers[active_marker].lat, markers[active_marker].lon ), 5);
+
+					var point = new GLatLng(markers[active_marker].lat,
+									markers[active_marker].lon);
+					var marker = new GMarker(point);
+					var message = '<div style="width:250px;font-size:12px;"><table><tr><td><img src="' + markers[active_marker].profile  + '" /></td><td style="font-size:12px;">' + markers[active_marker].message + '</td></tr></table></div>';
+
+					GEvent.addListener(marker, "click", function() {
+									map.openInfoWindowHtml(point, message); });
+					map.openInfoWindowHtml(point, message);
+					map.addOverlay(marker);
+
+					map.setZoom(5);
+
+					active_marker++;
+			}
+
+			google.setOnLoadCallback(initialize);
+			</script>
+ROADRAGEMAP;
+			}
             return html( $output );
-        }
-
-    dispatch( '/getgeo', 'getgeo' );
-        function getgeo()
-        {
-            $tweets = find_geo_tweets( 20 );
-
-            $tweets_feed = '';
-
-            if( sizeof( $tweets ) )
-            {
-                foreach( $tweets as $tweet )
-                {
-                    $location = str_replace( ',', ' ', $tweet->location );
-                    $tweets_feed .=
-<<<FEEDSTER
-<entry>
-<id>tag:search.twitter.com,2005:1333333123123</id>
-<published>{$tweet->raw_date}</published>
-<link type="text/html" rel="alternate" href="http://google.com"/>
-<title>{$tweet->raw_tweet}</title>
-<content type="html">{$tweet->raw_tweet}</content>
-<updated>{$tweet->raw_date}</updated>
-<link type="image/png" rel="image" href="{$tweet->profile_image}"/>
-<twitter:geo>
-<georss:point>{$location}</georss:point>
-</twitter:geo>
-<twitter:metadata>
-<twitter:result_type>recent</twitter:result_type>
-</twitter:metadata>
-<twitter:source>&lt;a href=&quot;http://foursquare.com&quot; rel=&quot;nofollow&quot;&gt;foursquare&lt;/a&gt;</twitter:source>
-<twitter:lang>en</twitter:lang>
-<author>
-<name>{$tweet->user}</name>
-<uri>http://twitter.com/{$tweet->user}</uri>
-</author>
-</entry>
-FEEDSTER;
-                }
-            }
-
-            $georss = 
-<<<GEORSS
-<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns:google="http://base.google.com/ns/1.0" xml:lang="en-US" xmlns:openSearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:georss="http://www.georss.org/georss" xmlns="http://www.w3.org/2005/Atom" xmlns:twitter="http://api.twitter.com/">
-<id>tag:search.twitter.com,2005:search/roadrage OR roadfinger</id>
-<link type="text/html" rel="alternate" href="http://search.twitter.com/search?q=roadrage+OR+roadfinger"/>
-<link type="application/atom+xml" rel="self" href="http://search.twitter.com/search.atom?q=roadrage+OR+roadfinger"/>
-<title>roadrage OR roadfinger - Twitter Search</title>
-<link type="application/opensearchdescription+xml" rel="search" href="http://search.twitter.com/opensearch.xml"/>
-<link type="application/atom+xml" rel="refresh" href="http://search.twitter.com/search.atom?q=4sq&amp;since_id=13342367008432128"/>
-<twitter:warning>since_id removed for pagination.</twitter:warning>
-<updated>2010-12-10T21:20:42Z</updated>
-<openSearch:itemsPerPage>15</openSearch:itemsPerPage>
-<link type="application/atom+xml" rel="next" href="http://search.twitter.com/search.atom?max_id=13342367008432128&amp;page=2&amp;q=roadrage+OR+roadfinger"/>
-    {$tweets_feed}
-</feed>
-GEORSS;
-            die( $georss );
         }
 
     dispatch( '/about', 'about' );
