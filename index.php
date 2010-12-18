@@ -89,7 +89,7 @@
 <<<ROADRAGEMAP
 			<div style="clear:both;"></div>
 			<h3>roadfinger map</h3>
-			<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAIrAfy9r_PM5B-5VoUtG-mRRCUVFcSe_h36pehuPuUe57FIqXQBStT-nGLrDzK9HgXuT1eT6MKdsZrw"></script>
+			<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAACvAv2kBI34-T3LCl3G9a8BQq2ohEevnkNNscOHPZTBE8chydpRR6QTHx9XkoMbEgdZgDQ2mFcSZiLA"></script>
 			<div id="gmap" style="width:550px;height:400px;">map is loading ...</div>
 			<script type="text/javascript">
 			google.load("maps", "2.x");
